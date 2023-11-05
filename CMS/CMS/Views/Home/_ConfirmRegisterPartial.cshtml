@@ -1,0 +1,40 @@
+﻿
+@{
+    string message = ViewBag.Message;
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>成功</title>
+</head>
+<body>
+
+    <h1>@message</h1>
+    <span class="mt-1">
+        <a id="Link" href="/Home/Login"></a>
+    </span>
+
+    <script>
+
+        function getMsg(val) {
+            return `再${val}秒自動跳轉至登入畫面`;
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            let count = 10;
+            let element = document.getElementById("Link");
+            element.innerText = getMsg(count--);
+            let timer = setInterval(function () {
+                element.innerText = getMsg(count--);
+                if (count < 0) {
+                    clearInterval(timer);
+                    window.location.href = '/Home/Login';
+                }
+            }, 1000); // 1000毫秒 = 1秒
+
+        })
+    </script>
+</body>
+</html>

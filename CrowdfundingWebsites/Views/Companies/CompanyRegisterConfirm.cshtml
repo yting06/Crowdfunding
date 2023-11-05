@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "註冊確認";
+}
+
+@Styles.Render("~/Content/css")
+
+<div class="alert alert-warning">
+    還差最後一個步驟，請至Email點選驗證信中的連結來完成註冊，謝謝!
+
+    <a href="@Url.Action("CompanyLogin","Companies")">回到登入頁面</a>
+</div>

@@ -1,0 +1,93 @@
+﻿@model CrowdfundingWebsites.Models.DTO.OrderDTO
+
+@{
+    var dto = (CrowdfundingWebsites.Models.DTO.ProductDTO)ViewBag.ProductInfo;
+}
+
+<!--商品購買頁-->
+<div class="container">
+    <div class="row d-flex">
+        <!--產品卡片連結-->
+        <div class="col-6 col-lg-4 col-6 col-lg-4">
+            <h5 class="text-center">商品列表</h5>
+            <div class="card">
+                <img src="@dto.Image" class="card-img-top" style="height: 30;" alt="商品圖">
+                <div class="card-body">
+                    <h5 class="card-title">@dto.Detail</h5>
+                    <h4 class="text-start">價格：@dto.Price</h4>
+                    <span class="badge bg-danger">剩餘數量：</span>
+                    <small class="link-secondary">商品上架數量：@dto.Qty</small>
+                    @*<div class="d-grid gap-2 col-6 mx-auto">
+                            <a href="#" class="btn btn-success">贊助商品</a>
+                        </div>*@
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-6 col-lg-4 col-6 col-lg-4">
+            @Html.ActionLink("回到上一頁", "ProjectDetial", "Home", new { projectId = @dto.Project.Id }, htmlAttributes: new { @class = "col-form-label col-md-4 text-end" })
+            @using (Html.BeginForm())
+            {
+                @Html.HiddenFor(Model => Model.ProductId, new { @value = dto.Id })
+                <div class="form-horizontal mt-3">
+                    <div class="row mb-3">
+                        @Html.LabelFor(model => model.Count, htmlAttributes: new { @class = "col-form-label col-md-4 text-end" })
+                        <div class="col-md-8">
+                            <input class="form-control text-box single-line" data-val="true" id="Count" name="Count" readonly="readonly" type="number" value="1">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        @Html.LabelFor(model => model.PaymentId, htmlAttributes: new { @class = "col-form-label col-md-4 text-end" })
+                        <div class="col-md-8">
+                            @Html.DropDownListFor(Model=> Model.PaymentId, (SelectList)ViewBag.Payments, new { @class = "form-select shadow-none" })
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "col-form-label col-md-4 text-end" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "col-form-label col-md-4 text-end" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        @Html.LabelFor(model => model.PostalCode, htmlAttributes: new { @class = "col-form-label col-md-4 text-end" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PostalCode, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "col-form-label col-md-4 text-end" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="row mb-3">
+                        <div class="col-md-offset-2 col-md-12 d-flex justify-content-end">
+                            <input type="submit" value="送出" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    @*@using (Html.BeginForm("Submit", "YourController", FormMethod.Post))
+        {
+        }*@
+

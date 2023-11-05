@@ -1,0 +1,41 @@
+﻿@model CrowdfundingWebsites.Models.ViewModels.MemberVm
+
+@{
+    ViewBag.Title = "個人頁面 | ";
+}
+
+<div class="card mb-3 mx-auto" style="max-width: 540px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="@Model.Image" class="img-fluid rounded-circle" alt="照片">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">@Model.Name</h5>
+                <p class="card-text">自我介紹：@Model.Introduce</p>
+                <p class="card-text"><small class="text-muted">加入時間：@Model.CreatedTime</small></p>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+
+
+@*<div class="text-center">
+    <h3>贊助紀錄</h3>
+</div>
+<div>
+    <div class="card mb-3 mx-auto" style="max-width: 800px;">
+        <div class="row g-0">
+            <div class="col-md-2">
+                <img src="..." class="img-fluid rounded-start" alt="專案圖片">
+            </div>
+            <div class="col-md-10">
+                <div class="card-body">
+                    <h5 class="card-title">專案標題</h5>
+                    <p class="card-text"><small class="text-muted">專案開始時間</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@

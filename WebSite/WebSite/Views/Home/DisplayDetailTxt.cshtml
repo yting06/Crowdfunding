@@ -1,0 +1,29 @@
+﻿@{
+
+    var content = ViewBag.Content;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>信件內容</title>
+    <link rel="stylesheet" href="~/Content/bootstrap/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">主題：@content.Subject</div>
+        <div class="row">寄件人：@content.From</div>
+        <div class="row">收件人：@content.To</div>
+        <div class="row">
+            內容:
+            <div class="col-12 text-start">
+                @Html.Raw(@content.Content)
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+

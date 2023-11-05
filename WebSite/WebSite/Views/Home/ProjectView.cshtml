@@ -1,0 +1,150 @@
+﻿@model CrowdfundingWebsites.Models.DTO.ProjectDTO
+
+
+@{
+    List<CrowdfundingWebsites.Models.EFModels.News> news = Model.News.OrderByDescending(n => n.CreatTime).ToList();
+
+    bool isFinish = Model.EndTime < DateTime.Now;
+    string daysInfo = isFinish ? "已結束" : $"剩下 {(Model.EndTime - DateTime.Now).Days} 天";
+
+    string value = Model.SupportPercent + "%";
+}
+
+<!--專案畫面-->
+
+<div class="container">
+    <div class="card mb-3 mx-auto">
+        <div class="row g-0">
+            <div class="col-md-8 text-center">
+                <img src="@(@"https:\\localhost:44345\" + Model.Image)" class="img-fluid rounded" alt="@Model.Name" />
+            </div>
+            <div class="col-md-4">
+                <div class="card-body">
+                    <!-- 麵包屑-專案類別 -->
+                    <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/Home/Index">Home</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="/Home/Index?ProjectType=@Model.Category.Id">@Model.Category.Name</a>
+                            </li>
+                        </ol>
+                    </nav>
+                    <!-- 提案人畫面連結 -->
+                    <p class="card-text">
+                        <small class="text-muted">
+                            提案人：@Model.Company.Name  @*<a href="/Home/CompanyView"></a>*@
+                        </small>
+                    </p>
+                    <!--專案目標-->
+                    <div>
+                        <div class="card-footer border-light">
+                            <div class="text-center">
+                                <small class="link-secondary  ">目標金額： @Model.Goal</small>
+                            </div>
+                            <h5 class="text-center">Total： @Model.SupportMoney </h5>
+                            <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: @value;" aria-valuenow="@Model.SupportPercent" aria-valuemin="0" aria-valuemax="100">@value</div>
+                            </div>
+                            <div class="row justify-content-start">
+                                <div class="col text-start">
+                                    <small class="link-secondary"> @daysInfo </small>
+                                </div>
+                                <div class="col text-end">
+                                    <small class=" link-success"> @Model.SupportCount 人支持</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h5 class="card-title">@Model.Name</h5>
+                        <hr />
+                        <p class="card-text">
+                            <small class="text-muted">募資時間： @Model.StartTime.ToShortDateString() ~ @Model.EndTime.ToShortDateString() </small>
+                        </p>
+                    </div>
+                    <!--追蹤按鈕-->
+                    @*<div class="d-grid gap-2 col-6 mx-auto align-self-end">
+                            <button type="button" class="btn btn-outline-success">追蹤專案</button>
+                        </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--專案下方內容展現+商品列表-->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-lg-8 col-sm-6 col-lg-8">
+            <!--頁籤-->
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">
+                        專案內容
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
+                        最新消息
+                    </button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <!--顯示專案介紹-->
+                    @Model.Description
+                </div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <!--顯示最新消息-->
+
+                    @foreach (var data in news)
+                    {
+                        var days = (DateTime.Now - data.CreatTime).Days;
+
+                        <div class="list-group">
+                            <div class="list-group-item list-group-item-action d-flex gap-3 py-3 my-3" aria-current="true">
+                                <i class="rounded-circle flex-shrink-0 " alt="twbs" width="32" height="32"></i>
+                                <div class="d-flex gap-2 w-100 justify-content-between">
+                                    <div>
+                                        <h6 class="mb-0">@data.Name</h6>
+                                        <p class="mb-0 opacity-75">@data.Description</p>
+                                    </div>
+                                    <small class="opacity-50 text-nowrap"> @(days == 0 ? "今天": $"{days}天前" ) </small>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+        <!--產品卡片連結-->
+        <div class="col-6 col-lg-4 col-6 col-lg-4">
+            <h5 class="text-center">商品列表</h5>
+
+            @if (Model.Products.Count > 0)
+            {
+                foreach (var item in Model.Products)
+                {
+                    <div class="card">
+                        <img src="@(@"https:\\localhost:44345\" + item.Image)" class="card-img-top" style="max-width: 200px; " alt="商品圖">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Detail</h5>
+                            <h4 class="text-start">@item.Price</h4>
+                            <span class="badge bg-danger">剩餘數量：@item.RemainingCount</span>
+                            <small class="link-secondary">商品上架數量：@item.Qty</small>
+                            @if (isFinish == false)
+                            {
+                                <div class="d-grid gap-2 col-6 mx-auto">
+                                    <a href="/Home/Order?productId=@item.Id" class="btn btn-success">贊助商品</a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

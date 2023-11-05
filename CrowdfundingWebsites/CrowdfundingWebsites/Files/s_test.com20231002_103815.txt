@@ -1,0 +1,6 @@
+﻿from:g01.webapp@gmail.com
+to:s@test.com,
+subject:[重設密碼通知]
+His,
+<br/>
+請點擊此連結[<a href='https://localhost:44345/Companies/ResetCompanyPassword?companyid=25&comfirmCode=2ac846052c8f4dd7b83e4762df803d38' target='_blank'>我要重設密碼</a>],已進行重設密碼，如果您沒有提出申請，請忽略本信，謝謝

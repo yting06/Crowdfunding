@@ -1,0 +1,95 @@
+﻿@model IEnumerable<CrowdfundingWebsites.Models.DTO.OrderRecordDTO>
+
+@{
+    ViewBag.Title = "贊助紀錄";
+}
+
+<br />
+<h3>@ViewBag.Title</h3>
+<table class="table table-striped table-sm">
+    <thead>
+    <th>#</th>
+    <th>訂單編號</th>
+    <th>專案名稱</th>
+    <th>總金額</th>
+    <th>付款方式</th>
+    <th>付款狀態</th>
+    <th class="text-end">贊助時間</th>
+    <th></th>
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.No)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Project.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Payment.Name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentStatus.Name)
+                </td>
+
+                <td class="text-end">
+                    @Html.DisplayFor(modelItem => item.OrderTime)
+                </td>
+                <td style="width: 100px">
+                    <input type="button" class="btn btn-success btnShowItems" value="show items" data-order-id="@item.Id" />
+                    <input type="button" class="btn btn-danger btnHideItems" value="hide items" data-order-id="@item.Id" />
+                </td>
+            </tr>
+
+            <tr data-is-detail="true" data-order-id="@item.Id">
+                <td colspan="5">
+                    <!--OrderItems begin-->
+                    <table class="table table-bordered table-striped table-sm ms-auto mt-3 mb-5" @*style="width:80%"*@>
+                        <thead>
+                        @*<th>#</th>*@
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Qty</th>
+                        @*<th>Recipient</th>*@
+                        </thead>
+                        <tbody>
+                            @foreach (var detail in item.Items)
+                            {
+                                <tr>
+                                    @*<td>@detail.Id</td>*@
+                                    <td>@detail.Product.Detail</td>
+                                    <td class="text-end">@detail.Product.Price</td>
+                                    <td class="text-end">@detail.Qty</td>
+                                    @*<td class="text-start">
+                                        @detail.RecipientName
+                                        <br />
+                                        @detail.RecipientPhoneNumber
+                                        <br />
+                                        @detail.RecipientPostalCode
+                                        <br />
+                                        @detail.RecipientAddress
+                                    </td>*@
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script src="~/js/Order.js"></script>
+}

@@ -1,0 +1,5 @@
+﻿from:g01.webapp@gamail.com
+to:test@gmail.com
+subject:[重設密碼通知]
+Hi 行伸, <br /> 請點擊此連結 [<a href='https://localhost:44349/Manager/ResetPassword?
+key=1&confirmCode=a65948dd0910428795bbe899c3fc1566' target='_blank'>我要重設密碼</a>]，以進行重設密碼，如果您沒有提出申請，請忽略此信，謝謝

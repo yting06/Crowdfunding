@@ -1,0 +1,120 @@
+﻿@{
+   
+    string WebName = "提案團隊管理中心";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@WebName</title>
+    <script>
+        // JavaScript代碼在這裡
+        const root = document.documentElement;
+        const newPrimaryColor = '#F0997D'; // 新的主要顏色
+        root.style.setProperty('--c-primary', newPrimaryColor);
+    </script>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/font/css")
+    @Styles.Render("~/lib/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="container-fluid position-relative d-flex p-0">
+        <!-- Spinner Start -->
+        <div id="spinner"
+             class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+        <!-- Sidebar Start -->
+        <div class="sidebar pb-3">
+            <div class="navbar navbar-expand navbar-logo" style="background-color: #F0997D ">
+                @*@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })*@
+                <a href="~/Companies/Index" class="navbar-brand mx-4 text-center">
+                    <h5 class="bs-font-light"><i class="fa fa-user-edit me-2"></i>@WebName</h5>
+                </a>
+            </div>
+            <nav class="navbar bs-c-secondary navbar-dark">
+                <ul class="navbar-nav w-100" id="leftNavBar">
+                    @*<li><a href="~/Companies/CompanyRegister" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>註冊</a></li>*@
+                    @*<li><a href="~/Companies/CompanyLogin" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>登入</a></li>*@
+                    <li>
+                        <a href="~/Companies/EditCompanyProfile" class="nav-item nav-link">
+                            <i class="fa fa-tachometer-alt me-2" style="background-color: #F0997D" ></i>修改團隊資料
+                        </a>
+                    </li>
+                    <li><a href="~/Companies/EditCompanyPassword" class="nav-item nav-link"><i class="fa fa-th me-2" style="background-color: #F0997D"></i>修改密碼</a></li>
+                    <li><a href="~/Projects/Index" class="nav-item nav-link"><i class="fa fa-file-text me-2" style="background-color: #F0997D"></i>專案管理</a></li>
+                    <li><a href="~/Products/Index" class="nav-item nav-link"><i class="fa fa-shopping-bag me-2" style="background-color: #F0997D"></i>商品管理</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+        <!-- Sidebar End -->
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand bs-c-light navbar-dark sticky-top px-4 py-0">
+                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+                    <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
+                </a>
+                <a href="#" class="sidebar-toggler flex-shrink-0" style="background-color: #F0997D ">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <div class="navbar-nav align-items-center ms-auto">
+                    <ul class="navbar-nav flex-grow-1">
+                        @{
+                            if (User.Identity.IsAuthenticated)
+                            {
+                                <li class="mb-0 bs-font-light"><a href="/Companies/Index/" class="nav-link" style="font-weight: bold; color: black;" onmouseover="this.style.color='blue'" onmouseout="this.style.color='black'">@(User.Identity.Name)</a></li>
+                                <li>@Html.ActionLink("登出", "CompanyLogout", "Companies", new { area = "" }, new { @class = "nav-link" })</li>
+                               
+                            }
+                            else
+                            {
+
+                                <li>@Html.ActionLink("登入", "CompanyLogin", "Companies", new { area = "" }, new { @class = "nav-link" })</li>
+                                <li>@Html.ActionLink("註冊", "CompanyRegister", "Companies", new { area = "" }, new { @class = "nav-link" })</li>
+                            }
+                        }
+
+                    </ul>
+                                      
+                </div>
+            </nav>
+            <!-- Navbar End -->
+            <nav class="pt-3 px-4" aria-label="breadcrumb" style="background-color: white;">
+                   
+                </nav>
+
+            <!-- Blank Start -->
+            <div class="container-fluid px-4" style="background-color: white;">
+                <div class="row vh-100 bs-c-light rounded align-items-start align-content-start  justify-content-center mx-0">
+                    @RenderBody()
+                </div>
+            </div>
+            <!-- Blank End -->
+            <!-- Footer Start -->
+            <div class="container-fluid pt-4 px-4" style="background-color: white;">
+                
+            </div>
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+        <!-- Back to Top -->
+        
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/lib/javascript")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @Scripts.Render("~/javascript/init")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

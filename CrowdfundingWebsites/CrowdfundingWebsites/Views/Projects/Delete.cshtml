@@ -1,0 +1,78 @@
+﻿@model CrowdfundingWebsites.Models.EFModels.Project
+
+@{
+    ViewBag.Title = "Delete";
+}
+<style>
+    .table {
+        width: 100%;
+        border-collapse: separate; /*邊框沒有合併*/
+    }
+
+        .table > :not(caption) > * > * {
+            border-bottom-width: 0px !important;
+        }
+</style>
+
+<h4>確定要刪除此專案嗎?</h4>
+
+<div>
+
+    <hr />
+    <div>
+        <table class="table" style="border-collapse: separate; margin-top: 15px; border-spacing: 3px; text-align: center; vertical-align: middle;">
+            <tr>
+                <th style="padding: 5px 0px; color: #fff; background-color: #808080;">類別</th>
+                <td style="padding: 5px 0px; color: #555; text-align: center; background-color: #F7F5F5;">@Html.DisplayFor(model => model.CategoryId)</td>
+            </tr>
+            <tr>
+                <th style="padding: 5px 0px; color: #fff; background-color: #808080;">專案名稱</th>
+                <td style="padding: 5px 0px; color: #555; text-align: center; background-color: #F7F5F5;">@Html.DisplayFor(model => model.Name)</td>
+            </tr>
+            <tr>
+                <th style="padding: 5px 0px; color: #fff; background-color: #808080;">圖片</th>
+                <td style="padding: 5px 0px; color: #555; text-align: center; background-color: #F7F5F5;">@Html.DisplayFor(model => model.Image)</td>
+            </tr>
+            <tr>
+                <th style="padding: 5px 0px; color: #fff; background-color: #808080;">商品描述</th>
+                <td style="padding: 5px 0px; color: #555; text-align: center; background-color: #F7F5F5;"> @Html.DisplayFor(model => model.Description)</td>
+            </tr>
+            <tr>
+                <th style="padding: 5px 0px; color: #fff; background-color: #808080;">募款目標金額</th>
+                <td style="padding: 5px 0px; color: #555; text-align: center; background-color: #F7F5F5;">@Html.DisplayFor(model => model.Goal)</td>
+            </tr>
+            <tr>
+                <th style="padding: 5px 0px; color: #fff; background-color: #808080;">開始募資時間</th>
+                <td style="padding: 5px 0px; color: #555; text-align: center; background-color: #F7F5F5;">@Html.DisplayFor(model => model.StartTime)</td>
+            </tr>
+            <tr>
+                <th style="padding: 5px 0px; color: #fff; background-color: #808080;">結束募資時間</th>
+                <td style="padding: 5px 0px; color: #555; text-align: center; background-color: #F7F5F5;">@Html.DisplayFor(model => model.EndTime)</td>
+            </tr>
+            <tr>
+                <th style="padding: 5px 0px; color: #fff; background-color: #808080;">出貨天數</th>
+                <td style="padding: 5px 0px; color: #555; text-align: center; background-color: #F7F5F5;">@Html.DisplayFor(model => model.ShippingDays)</td>
+            </tr>
+            <tr>
+                <th style="padding: 5px 0px; color: #fff; background-color: #808080;">狀態</th>
+                <td style="padding: 5px 0px; color: #555; text-align: center; background-color: #F7F5F5;">@Html.DisplayFor(model => model.StatusId)</td>
+            </tr>
+            <tr>
+                <th style="padding: 5px 0px; color: #fff; background-color: #808080;">最近異動日</th>
+                <td style="padding: 5px 0px; color: #555; text-align: center; background-color: #F7F5F5;">@Html.DisplayFor(model => model.UpdateTime)</td>
+            </tr>
+
+        </table>
+    </div>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="Delete" class="btn btn-primary" /> |
+    @Html.ActionLink("回到專案列表", "Index", null, new { @class = "btn btn-success" })
+</div>
+    }
+</div>

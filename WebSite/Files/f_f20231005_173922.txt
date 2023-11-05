@@ -1,0 +1,15 @@
+﻿from:mumu@gmail.com.xx
+to:f@f
+subject:[註冊確認信] 沐沐 : 募資平台
+
+Hif,
+<br/>
+親愛的f您好:
+
+歡迎您加入沐沐 : 募資平台會員，
+
+請點擊連結[<a href='https://localhost:44331/Member/ActiveRegister?memberId=17&confirmCode=04716c77c25e4b3a878b656934d10e72' target='_blank'>確認註冊</a>],以正式開通您的會員帳號,
+(連結無效時,請複製URL貼在瀏覽器網址列上按Enter),
+
+若您並未申請，請不必理會此信件!
+此為系統自動寄送訊息，請勿直接回覆本郵件

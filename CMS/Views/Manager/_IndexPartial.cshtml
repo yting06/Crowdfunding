@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "用戶管理";
+
+}
+
+<div id="SearchContainer" class="container mt-3" style="">
+    <div class="row justify-content-center">
+        <div class="d-flex col-md-4 "></div>
+        <div class="d-flex col-md-4 ">
+            <div class="col-md ps-0">
+                <input type="search" id="search-Value" class="form-control shadow-none" placeholder="搜尋">
+            </div>
+            <button id="search-btn" type="button" class="btn btn-outline-primary ms-2">搜尋</button>
+        </div>
+        <div class="d-flex col-md-4 justify-content-end">
+            <button id="addUser" type="button" class="btn btn-outline-primary">新增用戶</button>
+            <button id="addUsers" type="button" class="btn btn-outline-primary mx-3" control-act="importExcel">新增多位用戶</button>
+        </div>
+    </div>
+
+</div>
+<div id="dt-container" class="mt-1 table">
+    <div class="table-responsive">
+        <table id="managerTable" class="table table-bordered table-hover" style="width:100%">
+            <thead class="bs-table-secondary">
+
+            </thead>
+            <tbody>
+            </tbody>
+
+
+        </table>
+    </div>
+</div>
+
+<script src="~/js/Managers_index.js"></script>
+

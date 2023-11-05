@@ -1,0 +1,6 @@
+﻿from:g01.webapp@gmail.com
+to:allen@gmail.com,
+subject:[重設密碼通知]
+Hi艾倫郭股份有限公司,
+<br/>
+請點擊此連結[<a href='https://localhost:44345/Companies/ResetCompanyPassword?companyid=1&comfirmCode=ace2616e9e3f46819fde066d2ba40d60' target='_blank'>我要重設密碼</a>],已進行重設密碼，如果您沒有提出申請，請忽略本信，謝謝

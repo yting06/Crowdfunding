@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head class="bg-body-tertiary">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title 沐沐 | 募資平台</title>
+    @Styles.Render("~/font/css")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("css", required: false)
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-light navbar-brand" style="background-color: #ffffff">
+        <div class="container">
+            <a class="navbar-brand " href="\Home\Index">
+                <img src="~/Img/logo.png" height="80" alt="沐沐">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
+                    @{
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item dropdown ">
+                                <a class="nav-link dropdown-toggle" href="/Member/Index/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    @(User.Identity.Name)
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li>@Html.ActionLink("贊助紀錄", "OrderRecord", "Record", new { area = "" }, new { @class = "nav-link" })</li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>@Html.ActionLink("帳號設定", "EditProfile", "Member", new { area = "" }, new { @class = "nav-link" })</li>
+                                    <li>@Html.ActionLink("修改密碼", "EditPassword", "Member", new { area = "" }, new { @class = "nav-link" })</li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>@Html.ActionLink("登出", "Logout", "Member", new { area = "" }, new { @class = "nav-link" })</li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("登入", "Login", "Member", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("註冊", "Register", "Member", new { area = "" }, new { @class = "nav-link" })</li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+    @RenderBody()
+    <footer>
+        <hr />
+        <ul class="nav justify-content-center">
+            <li>@Html.ActionLink("關於我們", "Index", "Home", new { area = "" }, new { @class = "nav-link fs-6 link-secondary" })</li>
+            <li>@Html.ActionLink("常見問題", "Index", "Home", new { area = "" }, new { @class = "nav-link fs-6 link-secondary" })</li>
+            <li>@Html.ActionLink("服務條款", "Index", "Home", new { area = "" }, new { @class = "nav-link fs-6 link-secondary" })</li>
+            <li>@Html.ActionLink("隱私權政策", "Index", "Home", new { area = "" }, new { @class = "nav-link fs-6 link-secondary" })</li>
+        </ul>
+        <hr />
+        <div class="nav justify-content-center ">
+            <p class="text-secondary">&copy; @DateTime.Now.Year - 沐沐股份有限公司 </p>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/lib/javascript")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/javascript/init")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

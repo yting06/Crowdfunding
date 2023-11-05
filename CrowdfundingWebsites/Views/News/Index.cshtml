@@ -1,0 +1,84 @@
+﻿@model IEnumerable<CrowdfundingWebsites.Models.ViewModels.NewsVm>
+
+@{
+    ViewBag.Title = "最新消息列表";
+}
+<style>
+    .table {
+        width: 100%;
+        border-collapse: separate; /*邊框沒有合併*/
+    }
+
+        .table > :not(caption) > * > * {
+            border-bottom-width: 0px !important;
+        }
+</style>
+<h2>最新消息列表</h2>
+<form action="" method="get">
+
+    專案名稱：
+    @if (ViewBag.SelectProjectId == null)
+    {
+        @Html.DropDownList("ProjectId", null, new { @class = "form-select form-select-sm me-3", style = "width:auto;display:inline-block;" })
+    }
+    else
+    {
+        <input class="form-control text-box single-line" data-val="true" id="ProjectId" name="ProjectId" readonly="readonly" type="hidden" value="@ViewBag.SelectProjectId">
+        <input class="form-control text-box single-line" readonly="readonly" type="text" value="@ViewBag.DisplayProjectName">
+    }
+
+    <input type="submit" value="查詢" class="btn btn-success btn-sm" />
+</form>
+
+<table class="table" style="border-collapse: separate; margin-top: 15px; border-spacing: 3px; text-align: center; vertical-align: middle; ">
+    <tr style="padding: 5px 0px; color: #fff; background-color: #032343;">
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateTime)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.ProjectId)
+            </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr style="padding: 5px 0px; color: #555; text-align: center; background-color: #F7F5F5;">
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td style="text-align: left; max-width: 15em; word-wrap: break-word; ">
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateTime)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.ProjectId)
+                </td>*@
+        </tr>
+    }
+
+</table>
+
+<div>
+    <a href="~/Projects/Index" class="btn btn-success float-end">回到專案列表</a>
+</div>

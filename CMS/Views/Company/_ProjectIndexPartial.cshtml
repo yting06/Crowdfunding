@@ -1,0 +1,44 @@
+﻿@model CrowdfundingWebsites.Models.ViewModels.SearchProjectVm
+
+@{
+    ViewBag.Title = "專案管理";
+
+
+}
+
+<div id="SearchContainer" class="container mt-3" style="">
+    <div class="row justify-content-center">
+        <div class="d-flex mb-3 col-md-4 px-5 justify-content-center">
+            <label for="inputEmail3" class="col-form-label ">當前狀態</label>
+            <div class="ps-0 ms-2">
+                @Html.DropDownListFor(model => model.Type, (SelectList)ViewBag.Types, new { @class = "form-select shadow-none", @id = "typesDDL" })
+            </div>
+        </div>
+        <div class="d-flex mb-3 col-md-4">
+            <div class="col-md ps-0">
+                <input type="search" id="search-Value" class="form-control shadow-none" placeholder="搜尋">
+            </div>
+            <button id="search-btn" type="button" class="btn btn-outline-primary ms-2">搜尋</button>
+        </div>
+
+        <div class="d-flex col-md-4 justify-content-end">
+        </div>
+    </div>
+
+</div>
+<div id="dt-container" class="mt-1 table">
+    <div class="table-responsive">
+        <table id="projectTable" class="table table-bordered table-hover" style="width:100%">
+            <thead class="bs-table-secondary">
+
+            </thead>
+            <tbody>
+            </tbody>
+
+
+        </table>
+    </div>
+</div>
+
+<script src="~/js/Company_pIndex.js"></script>
+

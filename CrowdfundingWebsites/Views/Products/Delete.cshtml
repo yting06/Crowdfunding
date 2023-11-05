@@ -1,0 +1,60 @@
+﻿@model CrowdfundingWebsites.Models.EFModels.Product
+
+@{
+    ViewBag.Title = "刪除";
+}
+
+<style>
+    .table {
+        width: 100%;
+        border-collapse: separate; /*邊框沒有合併*/
+    }
+
+        .table > :not(caption) > * > * {
+            border-bottom-width: 0px !important;
+        }
+</style>
+
+<h4>確定要刪除此商品嗎?</h4>
+<div>
+
+    <hr />
+    <div>
+        <table class="table" style="border-collapse: separate; margin-top: 15px; border-spacing: 3px; text-align: center; vertical-align: middle;">
+            <tr>
+                <th style="padding: 5px 0px; color: #fff; background-color: #808080;">專案名稱</th>
+                <td style="padding: 5px 0px; color: #555; text-align: center; background-color: #F7F5F5;">@Html.DisplayFor(model => model.ProjectId)</td>
+            </tr>
+            <tr>
+                <th style="padding: 5px 0px; color: #fff; background-color: #808080;">商品名稱</th>
+                <td style="padding: 5px 0px; color: #555; text-align: center; background-color: #F7F5F5;">@Html.DisplayFor(model => model.Detail)</td>
+            </tr>
+            <tr>
+                <th style="padding: 5px 0px; color: #fff; background-color: #808080;">數量</th>
+                <td style="padding: 5px 0px; color: #555; text-align: center; background-color: #F7F5F5;">@Html.DisplayFor(model => model.Qty)</td>
+            </tr>
+            <tr>
+                <th style="padding: 5px 0px; color: #fff; background-color: #808080;">價格</th>
+                <td style="padding: 5px 0px; color: #555; text-align: center; background-color: #F7F5F5;">@Html.DisplayFor(model => model.Price)</td>
+            </tr>
+            <tr>
+                <th style="padding: 5px 0px; color: #fff; background-color: #808080;">圖片</th>
+                <td style="padding: 5px 0px; color: #555; text-align: center; background-color: #F7F5F5;">@Html.DisplayFor(model => model.Image)</td>
+            </tr>
+            <tr>
+                <th style="padding: 5px 0px; color: #fff; background-color: #808080;">更新時間</th>
+                <td style="padding: 5px 0px; color: #555; text-align: center; background-color: #F7F5F5;">@Html.DisplayFor(model => model.UpdateTime)</td>
+            </tr>
+        </table>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="刪除" class="btn btn-primary" /> |
+            @Html.ActionLink("回到商品列表", "Index", null, new { @class = "btn btn-success" })
+        </div>
+    }
+</div>

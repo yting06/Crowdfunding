@@ -1,0 +1,30 @@
+﻿@model CrowdfundingWebsites.Models.ViewModels.AboutUsVm
+
+@{
+    ViewBag.Title = "關於我們";
+}
+
+
+
+@*<link rel="stylesheet" type="text/css" href="~/Scripts/lib/ckeditor5/styles.css">*@
+
+<div class="viewBlock">
+    <h2>@Model.Title</h2>
+
+    <div class="demo">
+        @Model.Contents
+    </div>
+    
+
+    <button class="btn btn-primary">edit</button>
+</div>
+
+
+
+<div class="editor-container">
+    <div class="editor">
+    </div>
+</div>
+
+
+<script src="~/js/WebContents_aboutus.js" defer></script>

@@ -1,0 +1,45 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "註冊成功 | 沐沐 : 募資平台";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>成功</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+
+    <div class="alert alert-succes">
+        註冊成功，
+        請點擊<a href="@Url.Action("Login","Member")">此處</a>
+        進行登入。
+    </div>
+    <span class="mt-1 mx-3">
+        <a id="Link" href="/Member/Login"></a>
+    </span>
+
+    <script>
+
+        function getMsg(val) {
+            return `再${val}秒自動跳轉至登入畫面`;
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            let count = 10;
+            let element = document.getElementById("Link");
+            element.innerText = getMsg(count--);
+            let timer = setInterval(function () {
+                element.innerText = getMsg(count--);
+                if (count < 0) {
+                    clearInterval(timer);
+                    window.location.href = '/Member/Login';
+                }
+            }, 1000); // 1000毫秒 = 1秒
+
+        })
+    </script>
+</body>
+</html>

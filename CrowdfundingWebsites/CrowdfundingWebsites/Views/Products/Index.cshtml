@@ -1,0 +1,81 @@
+﻿@model IEnumerable<CrowdfundingWebsites.Models.ViewModels.ProductVm>
+
+@{
+    ViewBag.Title = "商品列表";
+}
+<style>
+    .table > :not(caption) > * > * {
+        border-bottom-width: 0px !important;
+    }
+</style>
+
+<h2>商品列表</h2>
+<form action="" method="get">
+
+    專案名稱：@Html.DropDownList("ProjectId", null, new { @class = "form-select form-select-sm me-3", style = "width:auto;display:inline-block;" })
+    @*@Html.TextBox("Name", null, new { @class = " form - control form - control - sm me - 3", style = "width:auto; display: inline - block; " })*@
+
+    <input type="submit" value="查詢" class="btn btn-success btn-sm" />
+</form>
+
+<p class="text-end">
+    <a href="~/Companies/Index" class="btn btn-outline-success">回到首頁</a>
+    <i> </i>
+    @Html.ActionLink("新增商品", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table" style="border-collapse: separate; border-spacing: 3px; text-align: center;  vertical-align: middle; ">
+    <tr style="padding: 5px 0px; color: #fff; background-color: #032343;">
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Detail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Qty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateTime)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr style="padding: 5px 0px; color: #555; text-align: center; background-color: #F7F5F5; margin-top: 5px">
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Detail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Qty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateTime)
+            </td>
+            <td>
+               @if (@item.Project?.Enabled == false && @item.Project.StatusId != 21)
+                {
+                    @Html.ActionLink("編輯", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" })
+                    <i> </i>
+                    @Html.ActionLink("刪除", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                    @*<a href="~/Products/Edit?id=@item.Id"><i class="fa-regular fa-pen-to-square me-lg-2"></i></a>
+                    <a href="~/Products/Delete?id=@item.Id"><i class="fa-solid fa-trash me-lg-2"></i></a>*@
+                }
+
+            </td>
+        </tr>
+}
+
+</table>
+<div>
+    <a href="~/Projects/Index" class="btn btn-success float-end">回到專案列表</a>
+</div>

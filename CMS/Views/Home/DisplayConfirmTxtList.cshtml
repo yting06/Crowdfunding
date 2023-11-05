@@ -1,0 +1,47 @@
+﻿@{
+
+    var fileVms = ViewBag.FolderFiles;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>信件</title>
+    <link rel="stylesheet" href="~/Content/bootstrap/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <h3>認證信件清單</h3>
+        </div>
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>檔案名稱</td>
+                        <td>主題</td>
+                        <td>建立時間</td>
+                    </tr>
+                </thead>
+                @if (fileVms.Count > 0)
+                {
+                    <tbody>
+                        @foreach (var vm in fileVms)
+                        {
+
+                            <tr>
+                                <td><a href="\Home\DisplayDetailTxt?fileName=@vm.FileName"><span>@vm.FileName</span></a></td>
+                                <td><span>@vm.Subject</span></td>
+                                <td><span>@vm.CreateTime</span></td>
+                            </tr>
+                        }
+                    </tbody>
+                }
+            </table>
+        </div>
+    </div>
+</body>
+</html>

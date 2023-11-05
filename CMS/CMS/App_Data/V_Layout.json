@@ -1,0 +1,48 @@
+{
+  "Layout": {
+    "leftNavBar": [
+      {
+        "Url": "/Company/CompanyIndex",
+        "CssIcon": "fa fa-building me-2",
+        "Title": "商家管理",
+        "Key": "CompanyManager"
+      },
+      {
+        "Url": "/Company/ProjectIndex",
+        "CssIcon": "fa fa-building me-2",
+        "Title": "專案管理",
+        "Key": "ProjectManager"
+      },
+      {
+        "Url": "/Manager/Index",
+        "CssIcon": "fa fa-user me-2",
+        "Title": "用戶管理",
+        "Key": "UserManager"
+      },
+      {
+        "Url": "/WebContents/Category",
+        "CssIcon": "fa fa-list me-2",
+        "Key": "Web_Category",
+        "Title": "目錄清單"
+      },
+      {
+        "Url": "/WebContents/FAQs",
+        "CssIcon": "fa fa-laptop me-2",
+        "Key": "Web_FAQ",
+        "Title": "常見問題"
+      },
+      {
+        "Url": "/Authority/Index",
+        "CssIcon": "fa fa-lock me-2",
+        "Title": "權限管理",
+        "Key": "Permission"
+      },
+      {
+        "Url": "",
+        "CssIcon": "fa fa-cog me-2",
+        "Title": "網站設定",
+        "Key": "WebConfig"
+      }
+    ]
+  }
+}

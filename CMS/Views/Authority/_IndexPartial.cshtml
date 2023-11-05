@@ -1,0 +1,113 @@
+﻿
+
+<div id="AuthorizeBlock" class="p-3" style="height: 100%;">
+    <ul class="nav nav-tabs" id="Tab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="user-tab" data-bs-toggle="tab" data-bs-target="#user"
+                    type="button" role="tab" aria-controls="user"
+                    aria-selected="false">
+                用戶權限
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link " id="role-tab" data-bs-toggle="tab"
+                    data-bs-target="#role" type="button" role="tab" aria-controls="role"
+                    aria-selected="true">
+                角色權限
+            </button>
+        </li>
+    </ul>
+    <div class="tab-content p-0" id="TabContent">
+        <div class="tab-pane fade p-2 show active" id="user" role="tabpanel" aria-labelledby="user-tab">
+            @*用戶權限*@
+            <div class="row m-3 justify-content-center" style="height: calc(100% - (4rem)); overflow-y: auto;">
+                @*用戶清單*@
+                <div class="col-sm-12 col-md-6 col-xl-4 mx-3">
+                    <div class="h-100 bs-c-light rounded p-4" style="border: 1px solid #999;">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <h6 class="mb-0">用戶</h6>
+                        </div>
+                        <div class="d-flex mb-2">
+                            <input class="input-search" type="search" placeholder="Search..." aria-label="Search" id="searchUser" >
+                        </div>
+                        <div id="userList" data-func="GetUsers">
+                        </div>
+                    </div>
+                </div>
+                @* 角色清單 *@
+                <div class="col-sm-12 col-md-6 col-xl-4 mx-3">
+                    <div class="h-100 bs-c-light rounded p-4" style="border: 1px solid #999;">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <h6 class="mb-0">用戶擁有的角色</h6>
+                            <div>
+                                <button id="editUserRole" type="button" class="btn btn-outline-primary" b-action="SaveUserRoleRel" >儲存</button>
+                            </div>
+                        </div>
+
+                        <div id="userRoleList" data-func="GetUserRoles">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="tab-pane fade p-2" id="role" role="tabpanel" aria-labelledby="role-tab">
+            @*角色權限*@
+            <div class="row m-3" style="height: calc(100% - (4rem)); overflow-y: auto;">
+                @*角色清單*@
+                <div class="col-sm-12 col-md-6 col-xl-4">
+                    <div class="h-100 bs-c-light rounded p-4" style="border: 1px solid #999;">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <h6 class="mb-0">角色</h6>
+                            <div>
+                                <button id="addRole" type="button" class="btn btn-outline-primary" b-action="AddNewRole">新增</button>
+                                <button id="deleteRole" type="button" class="btn btn-outline-primary" b-action="DeleteRoles">刪除</button>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-2">
+                            <input class="input-search " type="search" placeholder="Search..." aria-label="Search" id="searchRole">
+                        </div>
+                        <div id="roleList" data-func="GetRoles">
+
+                        </div>
+                    </div>
+                </div>
+                @* 頁面清單 *@
+                <div class="col-sm-12 col-md-6 col-xl-4">
+                    <div class="h-100 bs-c-light rounded p-4" style="border: 1px solid #999;">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <h6 class="mb-0">頁面</h6>
+                            <div>
+                                <button id="savePage" type="button" class="btn btn-outline-primary" b-action="SaveRolePageRel">儲存</button>
+                            </div>
+                        </div>
+                        <div id="pageList" data-func="GetPageOfRole">
+                        </div>
+                    </div>
+                </div>
+                @* 功能清單 *@
+                <div class="col-sm-12 col-md-6 col-xl-4">
+                    <div class="h-100 bs-c-light rounded p-4" style="border: 1px solid #999;">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <h6 class="mb-0">功能</h6>
+                            <div>
+                                <button id="saveFuncations" type="button" class="btn btn-outline-primary" b-action="SaveRoleFuncsRel">儲存</button>
+                            </div>
+                        </div>
+
+                        <div id="functionList" data-func="GetFunctionOfRole">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/Authority_Index.js"></script>

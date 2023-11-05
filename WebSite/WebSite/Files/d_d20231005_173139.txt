@@ -1,0 +1,15 @@
+﻿from:mumu@gmail.com.xx
+to:d@d
+subject:[重設密碼通知] 沐沐 : 募資平台
+
+Hid,
+<br />
+親愛的d您好:
+
+已收到您忘記密碼的申請，
+
+請點擊連結[<a href='https://localhost:44331/Member/ResetPassword?memberId=16&confirmCode=6ceb7d18c3a74b80a52f76da90e323a5' target='_blank'>重設密碼</a>],進入重設密碼的頁面,
+(連結無效時,請複製URL貼在瀏覽器網址列上按Enter),
+
+若您並未申請，請不必理會此信件!
+此為系統自動寄送訊息，請勿直接回覆本郵件

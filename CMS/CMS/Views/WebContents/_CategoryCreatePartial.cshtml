@@ -1,0 +1,47 @@
+﻿@model CrowdfundingWebsites.Models.ViewModels.CategoryVm
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "categoryFormId" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <div class="row mb-3">
+            @Html.Label("類型", htmlAttributes: new { @class = "col-form-label col-md-2 text-end" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Type, (SelectList)ViewBag.Types, new { @class = "form-select shadow-none", @id = "typesDDL" })
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "col-form-label col-md-2 text-end" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "col-form-label col-md-2 text-end" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            @Html.LabelFor(model => model.DisplayOrder, htmlAttributes: new { @class = "col-form-label col-md-2 text-end" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DisplayOrder, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DisplayOrder, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="row mb-3">
+            <div class="col-md-10">
+                @Html.ValidationMessage("error", "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+}

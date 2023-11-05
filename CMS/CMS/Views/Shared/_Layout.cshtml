@@ -1,0 +1,157 @@
+﻿@{
+    string WebName = "後臺管理";
+
+    var user = HttpContext.Current.User as CrowdfundingWebsites.Models.Services.UserPrincipal;
+    bool isAuthority = user != null && user.Identity.IsAuthenticated && user.Identity is FormsIdentity;
+
+    var userInfo = new CrowdfundingWebsites.Models.EFModels.AppDBContext().Managers.First(o => o.Account == user.Account);
+    var ViewHelper = new CrowdfundingWebsites.Models.Infra.ViewHelper();
+    string UserName = userInfo.LastName + userInfo.FirstName;
+
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@WebName</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/font/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="container-fluid position-relative d-flex p-0">
+        <!-- Spinner Start -->
+        <div id="spinner"
+             class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+        <!-- Sidebar Start -->
+        <div class="sidebar pb-3">
+            <div class="navbar navbar-expand navbar-logo">
+                <a href="#" class="navbar-brand mx-4 ">
+                    <h3 class="bs-font-light"><i class="fa fa-user-edit me-2"></i>@WebName</h3>
+                </a>
+            </div>
+            <nav class="navbar bs-c-secondary navbar-dark">
+                <div class="d-flex align-items-center ms-4 mb-2 mt-2">
+                    <div class="position-relative">
+                        <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
+                        </div>
+                    </div>
+                    <div class="ms-3 bs-font-light">
+                        <h6 class="mb-0 bs-font-light">@UserName</h6>
+                    </div>
+                </div>
+                <ul class="navbar-nav w-100" id="leftNavBar">
+                    @if (isAuthority)
+                    {
+                        var list = ViewHelper.GetLayoutAuthorizeList("leftNavBar", user.FuncsDict);
+
+                        if (list.Count() > 0)
+                        {
+                            foreach (var item in list)
+                            {
+                                if (item.Children != null)
+                                {
+                                    <li class="nav-item dropdown">
+                                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                            <i class="@item.CssIcon me-2"></i>@item.Title
+                                        </a>
+                                        <ul class="dropdown-menu bg-transparent border-0">
+                                            @foreach (var subItem in item.Children)
+                                            {
+                                                <li><a source="server" href="@subItem.Url" class="dropdown-item">@subItem.Title</a></li>
+                                            }
+                                        </ul>
+                                    </li>
+                                    continue;
+                                }
+                                <li>
+                                    <a source="server" href="@item.Url" class="nav-item nav-link">
+                                        <i class="@item.CssIcon me-2"></i>@item.Title
+                                    </a>
+                                </li>
+                            }
+                        }
+                    }
+                </ul>
+            </nav>
+        </div>
+        <!-- Sidebar End -->
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand bs-c-light navbar-dark sticky-top px-4 py-0">
+                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+                    <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
+                </a>
+                <a href="#" class="sidebar-toggler flex-shrink-0">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <div class="navbar-nav align-items-center ms-auto">
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <img class="rounded-circle me-lg-2" src="img/user.jpg" alt=""
+                                 style="width: 40px; height: 40px;">
+                            <span class="d-none d-lg-inline-flex">@UserName</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bs-c-light border-0 rounded-0 rounded-bottom m-0">
+                            <a source="server" href="/Manager/Profile?Id=@userInfo.Id" class="dropdown-item">個人資料</a>
+                            <a source="server" href="/Manager/PWEdit?Id=@userInfo.Id" class="dropdown-item">修改密碼</a>
+                            <a href="/Home/Logout" class="dropdown-item">登出</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- Navbar End -->
+
+            <nav class="pt-3 px-4" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    @*<li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Library</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Data</li>*@
+                </ol>
+            </nav>
+
+            <!-- Blank Start -->
+            <div class="container-fluid px-4">
+                <div id="RenderBody" class="row vh-100 bs-c-light rounded align-items-start align-content-start justify-content-center mx-0 p-2">
+                    @RenderBody()
+                </div>
+            </div>
+            <!-- Blank End -->
+            <!-- Footer Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bs-c-light rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-sm-start">
+                            &copy; <a href="#">Your Site Name</a>, All Right Reserved.
+                        </div>
+                        <div class="col-12 col-sm-6 text-center text-sm-end">
+                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                            Designed By <a href="https://htmlcodex.com">HTML Codex</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/lib/javascript")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/javascript/init")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

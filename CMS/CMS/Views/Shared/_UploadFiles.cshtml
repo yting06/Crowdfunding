@@ -1,0 +1,31 @@
+﻿@{
+    string title = ViewBag.title;
+    string filePath = ViewBag.examplePath;
+    string d_source = ViewBag.ApiAction;
+}
+
+<div class="bs-c-light rounded h-100 p-4 pb-0">
+    <h6 class="mb-3">@title</h6>
+    <div class="container-fluid mb-3" container="spinner">
+
+        <div class="row mb-1">
+            <input class="form-control bs-c-light" type="file" id="formFile" d-source="@d_source">
+        </div>
+
+        <div class="row">
+            <div class="col-4 px-0">
+                <button id="uploadBtn" type="button" class="btn btn-primary">上傳</button>
+            </div>
+            @if (!string.IsNullOrEmpty(filePath))
+            {
+                <div class="col-4  offset-4 text-end px-0">
+                    <button type="button" class="btn btn-primary">下載範例excel</button>
+                </div>
+            }
+            <div class="alert alert-success mt-2 mb-0" role="alert" style="display:none"></div>
+        </div>
+    </div>
+
+</div>
+
+<script src="/js/Shared/WebContents_UploadFile.js"></script>

@@ -1,0 +1,7 @@
+﻿from:g01.webapp@gmail.com
+to:apple@gmail.com
+subject:[重設密碼通知]
+
+HiApple  Li,
+<br />
+請點擊此連結[<a href='https://localhost:44341/Member/ResetPassword?memberid=3&confirmCode=b8b9172df965433585da6b22e3bdb630' target='_blank'>重設密碼</a>],進行重設密碼,如果未提出申請,請忽略本信,謝謝
